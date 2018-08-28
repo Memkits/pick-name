@@ -1,0 +1,17 @@
+{
+  "name": "calcit-nodejs-workflow",
+  "version": "0.1.0",
+  "scripts": {
+    "download": "cd target/ && wget https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt",
+    "watch": "yarn shadow-cljs watch app"
+  },
+  "main": "index.js",
+  "repository": "git@github.com:mvc-works/calcit-nodejs-workflow.git",
+  "author": "jiyinyiyong <jiyinyiyong@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "shadow-cljs": "^2.6.4",
+    "source-map-support": "^0.5.9",
+    "ws": "^6.0.0"
+  }
+}
