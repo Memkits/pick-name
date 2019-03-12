@@ -16,12 +16,11 @@
   (->> words
        (filter
         (fn [word]
-          (let [letters (string/split word "")]
-            (and (string/starts-with? word "j")
-                 (string/includes? word "m")
-                 (not (string/ends-with? word "m"))
-                 (= 1 (count (filter (fn [x] (= x "m")) letters)))
-                 (= 1 (count (filter (fn [x] (= x "j")) letters)))))))
+          (let [letters (set (string/split word ""))]
+            (and (string/starts-with? word "m")
+                 (contains? letters "c")
+                 (< (count word) 7)
+                 (> (count word) 3)))))
        (string/join "\n")
        (println)))
 
