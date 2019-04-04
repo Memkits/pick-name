@@ -18,7 +18,8 @@
         (fn [word]
           (let [letters (set (string/split word ""))]
             (and (string/starts-with? word "m")
-                 (contains? letters "c")
+                 (string/includes? (subs word 1) "")
+                 (string/includes? word "son")
                  (< (count word) 7)
                  (> (count word) 3)))))
        (string/join "\n")
