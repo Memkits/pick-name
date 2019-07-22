@@ -16,12 +16,18 @@
   (->> words
        (filter
         (fn [word]
-          (let [letters (set (string/split word ""))]
-            (and (string/starts-with? word "m")
-                 (string/includes? (subs word 1) "")
-                 (string/includes? word "son")
-                 (< (count word) 7)
-                 (> (count word) 3)))))
+          (let [letters (vec (string/split word ""))
+                i-pos (.indexOf letters "i")
+                p-pos (.indexOf letters "p")
+                c-pos (.indexOf letters "c")]
+            (comment
+             and
+             (string/includes? word "i")
+             (string/includes? word "p")
+             (string/includes? word "c")
+             (< (count word) 14)
+             (> (count word) 3))
+            (and (<= 0 i-pos p-pos c-pos) (< (count word) 7)))))
        (string/join "\n")
        (println)))
 

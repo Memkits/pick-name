@@ -1,6 +1,4 @@
 {:source-paths ["src"]
- :repositories {"central" {:url "https://maven.aliyun.com/nexus/content/groups/public/"}
-                "clojars" {:url "https://mirrors.ustc.edu.cn/clojars/"}}
  :dependencies [[mvc-works/skir "0.0.3"]
                 [respo/router "0.4.0"]]
  :builds {:app {:target :node-script
