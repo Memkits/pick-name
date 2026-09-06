@@ -1,4 +1,5 @@
 {
+  "packageManager": "yarn@4.12.0",
   "name": "calcit-nodejs-workflow",
   "version": "0.1.0",
   "scripts": {
@@ -8,6 +9,7 @@
   "repository": "git@github.com:mvc-works/calcit-nodejs-workflow.git",
   "author": "jiyinyiyong <jiyinyiyong@gmail.com>",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
+    "@calcit/procs": "0.13.77"
   }
 }
