@@ -5,3 +5,5 @@
 
 .*.cirru
 .DS_Store
+
+/js-out/
