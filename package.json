@@ -1,7 +1,7 @@
 {
   "packageManager": "yarn@4.12.0",
   "name": "calcit-nodejs-workflow",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "scripts": {
     "dl": "cd target/ && wget https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt"
   },
@@ -10,6 +10,6 @@
   "author": "jiyinyiyong <jiyinyiyong@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@calcit/procs": "0.18.1"
+    "@calcit/procs": "0.22.0-alpha.3"
   }
 }
