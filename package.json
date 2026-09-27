@@ -1,5 +1,5 @@
 {
-  "packageManager": "yarn@4.12.0",
+  "packageManager": "yarn@4.18.0",
   "name": "calcit-nodejs-workflow",
   "version": "0.0.4",
   "scripts": {
@@ -10,6 +10,6 @@
   "author": "jiyinyiyong <jiyinyiyong@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@calcit/procs": "0.22.0-alpha.3"
+    "@calcit/procs": "0.24.3"
   }
 }
