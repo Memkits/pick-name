@@ -11,10 +11,10 @@ permissions:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
     - name: Check out repository
-      uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
         persist-credentials: false
 
@@ -34,10 +34,16 @@ jobs:
       uses: calcit-lang/setup-calcit@ca701be5a471759e442aa053cd100720bbe1f09f # v1.5.0
       with:
         tools: calcit,caps
+        caps-version: "0.1.1"
 
     - name: Resolve and verify toolchain
       run: |
         set -euo pipefail
+        test "$(calcit --version)" = "0.27.0"
+        test -f calcit.cirru
+        test -f deps.cirru
+        test ! -e compact.cirru
+        test ! -e package.cirru
         caps --strict --ci
         yarn install --immutable
         caps verify --toolchain
@@ -48,6 +54,8 @@ jobs:
         calcit calcit.cirru edit format
         git diff --exit-code -- calcit.cirru
         calcit calcit.cirru --check-only
+        calcit calcit.cirru fix --workflow strict --verify --format edn
+        calcit calcit.cirru analyze check-public --ns app.main --summary-only --format json
         calcit calcit.cirru analyze quality --baseline config/calcit-quality.cirru
         calcit calcit.cirru analyze dynamic-methods
         calcit calcit.cirru analyze deprecated --summary-only
@@ -55,7 +63,4 @@ jobs:
     - name: Run word-filter smoke test
       run: |
         set -euo pipefail
-        mkdir -p target
-        printf 'lipca\napple\n' > target/words_alpha.txt
-        calcit calcit.cirru | tee /tmp/pick-name-output.txt
-        grep -Fx 'lipca' /tmp/pick-name-output.txt
+        node --test scripts/word-filter.test.mjs
