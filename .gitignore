@@ -4,6 +4,8 @@
 /.yarn/
 
 .*.cirru
+compact.cirru
+package.cirru
 .DS_Store
 
 /js-out/
