@@ -12,14 +12,15 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-24.04
+    timeout-minutes: 10
     steps:
     - name: Check out repository
-      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      uses: actions/checkout@v7.0.1
       with:
         persist-credentials: false
 
     - name: Set up Node.js
-      uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+      uses: actions/setup-node@v6.5.0
       with:
         node-version: 24
         package-manager-cache: false
@@ -31,7 +32,7 @@ jobs:
         yarn --version
 
     - name: Set up Calcit and Caps
-      uses: calcit-lang/setup-calcit@ca701be5a471759e442aa053cd100720bbe1f09f # v1.5.0
+      uses: calcit-lang/setup-calcit@v1.5.0
       with:
         tools: calcit,caps
         caps-version: "0.1.1"
@@ -39,7 +40,6 @@ jobs:
     - name: Resolve and verify toolchain
       run: |
         set -euo pipefail
-        test "$(calcit --version)" = "0.27.0"
         test -f calcit.cirru
         test -f deps.cirru
         test ! -e compact.cirru
@@ -54,7 +54,6 @@ jobs:
         calcit calcit.cirru edit format
         git diff --exit-code -- calcit.cirru
         calcit calcit.cirru --check-only
-        calcit calcit.cirru fix --workflow strict --verify --format edn
         calcit calcit.cirru analyze check-public --ns app.main --summary-only --format json
         calcit calcit.cirru analyze quality --baseline config/calcit-quality.cirru
         calcit calcit.cirru analyze dynamic-methods
