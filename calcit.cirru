@@ -30,17 +30,14 @@
             -> @*words
               filter $ fn (word)
                 if
-                  &< (&str:count word) 7
+                  < (.len word) 7
                   let
-                      i-pos $ &str:find-index word |i
-                      p-pos $ &str:find-index word |p
-                      c-pos $ &str:find-index word |c
-                    ; and (.includes? word |i) (.includes? word |p) (.includes? word |c)
-                      &< (&str:count word) 14
-                      &> (&str:count word) 3
+                      i-pos $ .unwrap-or (.find-index word |i) -1
+                      p-pos $ .unwrap-or (.find-index word |p) -1
+                      c-pos $ .unwrap-or (.find-index word |c) -1
                     <= 0 i-pos p-pos c-pos
                   , false
-              join-str &newline
+              join-string &newline
               println
           :examples $ []
           :schema $ :: 'Fn $ {} (:return 'Unit)

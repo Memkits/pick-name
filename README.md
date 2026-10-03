@@ -6,7 +6,7 @@ Pick Name
 
 Based on https://github.com/dwyl/english-words
 
-Requires Calcit 0.27.0. The canonical sources are `calcit.cirru` and
+Requires Calcit/procs 0.28.0, Node.js 24 and Yarn 4.18.0. The canonical sources are `calcit.cirru` and
 `deps.cirru`; do not regenerate or commit retired `compact.cirru` or
 `package.cirru` snapshots. This is a native CLI tool, not a frontend deployment,
 so no COS/CDN upload is needed.
@@ -22,16 +22,22 @@ It's assumed that you want a name with some certain letters so you filter all av
 -> @*words
   filter $ fn (word)
     if
-      &< (&str:count word) 7
+      < (.len word) 7
       let
-          i-pos $ &str:find-index word |i
-          p-pos $ &str:find-index word |p
-          c-pos $ &str:find-index word |c
+          i-pos $ .unwrap-or (.find-index word |i) -1
+          p-pos $ .unwrap-or (.find-index word |p) -1
+          c-pos $ .unwrap-or (.find-index word |c) -1
         <= 0 i-pos p-pos c-pos
       , false
-  join-str &newline
+  join-string &newline
   println
 ```
+
+String search returns `Option<Number>`; `.unwrap-or -1` preserves the original
+missing-letter behavior. CI keeps strict type/public/quality gates and the
+existing fixture tests, without a compiler rewrite preset or extra checker.
+The quality baseline is unchanged. Actions use published version tags rather
+than hashes as requested; tags remain mutable despite read-only permissions.
 
 ### Workflow
 
