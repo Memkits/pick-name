@@ -13,10 +13,13 @@
         '*words $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defref *words
             ->
-              match
-                .read-text $ fs:path |./target/words_alpha.txt
-                (:ok text) text
-                (:err message) (raise message)
+              let
+                  path |./target/words_alpha.txt
+                match
+                  .read-text $ fs:path path
+                  (:ok text) text
+                  (:err message)
+                    raise $ str-spaced "|Could not read dictionary" path message
               , trim split-lines
           :examples $ []
           :schema $ :: 'Ref $ :: 'List 'String
