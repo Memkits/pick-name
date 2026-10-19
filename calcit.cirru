@@ -11,8 +11,13 @@
     %{} 'FileEntry
       :defs $ {}
         '*words $ %{} 'CodeEntry (:doc |)
-          :code $ quote $ defatom *words
-            -> (read-file |./target/words_alpha.txt) trim split-lines
+          :code $ quote $ defref *words
+            ->
+              match
+                .read-text $ fs:path |./target/words_alpha.txt
+                (:ok text) text
+                (:err message) (raise message)
+              , trim split-lines
           :examples $ []
           :schema $ :: 'Ref $ :: 'List 'String
         'main! $ %{} 'CodeEntry (:doc |)
