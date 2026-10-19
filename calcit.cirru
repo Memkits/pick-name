@@ -11,8 +11,16 @@
     %{} 'FileEntry
       :defs $ {}
         '*words $ %{} 'CodeEntry (:doc |)
-          :code $ quote $ defatom *words
-            -> (read-file |./target/words_alpha.txt) trim split-lines
+          :code $ quote $ defref *words
+            ->
+              let
+                  path |./target/words_alpha.txt
+                match
+                  .read-text $ fs:path path
+                  (:ok text) text
+                  (:err message)
+                    raise $ str-spaced "|Could not read dictionary" path message
+              , trim split-lines
           :examples $ []
           :schema $ :: 'Ref $ :: 'List 'String
         'main! $ %{} 'CodeEntry (:doc |)

@@ -6,7 +6,15 @@ Pick Name
 
 Based on https://github.com/dwyl/english-words
 
-Requires Calcit/procs 0.28.0, Node.js 24 and Yarn 4.18.0. The canonical sources are `calcit.cirru` and
+### 使用者影响
+
+保留 `target/words_alpha.txt` 路径、原筛选条件、输出顺序和缺失文件时的失败行为。
+读取改用 `fs:path` / `.read-text` 的 Result 合同；失败会保留文件错误并退出，
+不会把无法读取的词典静默当作空词典。`defref` 替代已弃用的 `defatom`。
+
+This candidate requires paired Calcit/procs 0.30.1-alpha.5, Node.js 24 and Yarn 4.18.0.
+The stable 0.30.1 release had no downloadable assets at verification; this is
+not stable-release acceptance. The canonical sources are `calcit.cirru` and
 `deps.cirru`; do not regenerate or commit retired `compact.cirru` or
 `package.cirru` snapshots. This is a native CLI tool, not a frontend deployment,
 so no COS/CDN upload is needed.
@@ -34,9 +42,12 @@ It's assumed that you want a name with some certain letters so you filter all av
 ```
 
 String search returns `Option<Number>`; `.unwrap-or -1` preserves the original
-missing-letter behavior. CI keeps strict type/public/quality gates and the
+missing-letter behavior. CI keeps strict all-definition/workflow/quality gates and the
 existing fixture tests, without a compiler rewrite preset or extra checker.
-The quality baseline is unchanged. Actions use published version tags rather
+The existing baseline is tightened to zero for all metrics, including the old
+schemaDynamic/typeNone/typeNotFull/unresolved allowances; no budget is relaxed.
+The legacy quality comparison remains until an equivalent supported gate can
+replace it, without adding a project-specific checker. Actions use published version tags rather
 than hashes as requested; tags remain mutable despite read-only permissions.
 
 ### Workflow
