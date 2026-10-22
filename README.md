@@ -8,13 +8,19 @@ Based on https://github.com/dwyl/english-words
 
 ### 使用者影响
 
+本轮将CLI和 `@calcit/procs` 一起配对正式 **0.30.1**，不再使用alpha.5。
+请重新安装配对工具链；本次不改Snapshot、筛选算法、输入路径或输出合同，也不发布npm包。
+没有外部Calcit模块，无需引入新的迁移/校验脚本或质量预算。
+
+以下Result文件读取与Option搜索说明属于前一轮已合并的源码迁移，本轮保持这些行为：
+
 保留 `target/words_alpha.txt` 路径、原筛选条件、输出顺序和缺失文件时的失败行为。
 读取改用 `fs:path` / `.read-text` 的 Result 合同；失败会保留文件错误并退出，
 不会把无法读取的词典静默当作空词典。`defref` 替代已弃用的 `defatom`。
 
-This candidate requires paired Calcit/procs 0.30.1-alpha.5, Node.js 24 and Yarn 4.18.0.
-The stable 0.30.1 release had no downloadable assets at verification; this is
-not stable-release acceptance. The canonical sources are `calcit.cirru` and
+This project requires paired formal Calcit/procs 0.30.1, Node.js 24 and Yarn 4.18.0.
+Formal CLI/type/fixture acceptance is verified in Linux CI; the previous alpha.5
+results are historical, not evidence for the new pair. The canonical sources are `calcit.cirru` and
 `deps.cirru`; do not regenerate or commit retired `compact.cirru` or
 `package.cirru` snapshots. This is a native CLI tool, not a frontend deployment,
 so no COS/CDN upload is needed.
