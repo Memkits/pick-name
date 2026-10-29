@@ -8,8 +8,8 @@ Based on https://github.com/dwyl/english-words
 
 ### 使用者影响
 
-本轮将CLI和 `@calcit/procs` 一起配对正式 **0.31.0**，从已发布的 0.30.1 升级。
-请重新安装配对工具链；本次不改Snapshot、筛选算法、输入路径或输出合同，也不发布npm包。
+本轮将CLI和 `@calcit/procs` 一起配对正式 **0.32.0**，从此前的 0.31.0 配对升级。
+请重新安装配对工具链；本次通过官方 formatter 更新 Snapshot 类型语法，筛选算法、输入路径和输出合同不变，也不发布npm包。
 没有外部Calcit模块，无需引入新的迁移/校验脚本或质量预算。
 
 以下Result文件读取与Option搜索说明属于前一轮已合并的源码迁移，本轮保持这些行为：
@@ -18,8 +18,8 @@ Based on https://github.com/dwyl/english-words
 读取改用 `fs:path` / `.read-text` 的 Result 合同；失败会保留文件错误并退出，
 不会把无法读取的词典静默当作空词典。`defref` 替代已弃用的 `defatom`。
 
-This project requires paired formal Calcit/procs 0.31.0, Node.js 24 and Yarn 4.18.0.
-使用固定官方 0.31.0 CLI 重新运行原类型、质量与临时词典回归，Linux CI 保留同一套门禁。
+This project requires paired formal Calcit/procs 0.32.0, Node.js 24 and Yarn 4.18.0.
+使用固定官方 0.32.0 CLI 重新运行原类型、质量与临时词典回归，Linux CI 保留同一套门禁。
 
 The canonical sources are `calcit.cirru` and
 `deps.cirru`; do not regenerate or commit retired `compact.cirru` or

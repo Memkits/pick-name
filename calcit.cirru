@@ -22,17 +22,15 @@
                     raise $ str-spaced "|Could not read dictionary" path message
               , trim split-lines
           :examples $ []
-          :schema $ :: 'Ref $ :: 'List 'String
+          :schema $ quote $ Ref (List String)
         'main! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn main! () (println |Started.) (run-task!)
           :examples $ []
-          :schema $ :: 'Fn $ {} (:return 'Unit)
-            :args $ []
+          :schema $ quote $ Fn (-> Unit)
         'reload! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn reload! () (println |Reloaded.) (run-task!)
           :examples $ []
-          :schema $ :: 'Fn $ {} (:return 'Unit)
-            :args $ []
+          :schema $ quote $ Fn (-> Unit)
         'run-task! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn run-task! ()
             -> @*words
@@ -48,7 +46,6 @@
               join-string &newline
               println
           :examples $ []
-          :schema $ :: 'Fn $ {} (:return 'Unit)
-            :args $ []
+          :schema $ quote $ Fn (-> Unit)
       :ns $ %{} 'NsEntry (:doc |)
         :code $ quote $ ns app.main
