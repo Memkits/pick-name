@@ -8,9 +8,9 @@ Based on https://github.com/dwyl/english-words
 
 ### 使用者影响
 
-本轮将CLI和 `@calcit/procs` 一起配对正式 **0.32.0**，从此前的 0.31.0 配对升级。
-请重新安装配对工具链；本次通过官方 formatter 更新 Snapshot 类型语法，筛选算法、输入路径和输出合同不变，也不发布npm包。
-没有外部Calcit模块，无需引入新的迁移/校验脚本或质量预算。
+本轮将 CLI 和 `@calcit/procs` 一起配对正式 **0.32.1**，从此前的 0.32.0 升级。
+请重新安装配对工具链；新的类型标注语法已在上一轮迁移，本轮保留 Snapshot 原字节；筛选算法、输入路径和输出合同不变，也不发布 npm 包。
+没有外部 Calcit 模块，无需引入新的迁移/校验脚本或质量预算。4 个项目定义的完整官方视图和 Snapshot 原字节均保持，原 3 项临时词典回归（顺序、CRLF、空词典和无匹配）通过；全定义 6/6、完整 strict 无诊断，全部 9 个质量指标仍为零。npm 新解析版本等待 60 分钟，删除旧单包豁免；已有锁定版本不重新计算等待时间。canonical 门禁仍检查零差异，改为 quiet，避免在失败日志中展开 Snapshot。
 
 以下Result文件读取与Option搜索说明属于前一轮已合并的源码迁移，本轮保持这些行为：
 
@@ -18,8 +18,8 @@ Based on https://github.com/dwyl/english-words
 读取改用 `fs:path` / `.read-text` 的 Result 合同；失败会保留文件错误并退出，
 不会把无法读取的词典静默当作空词典。`defref` 替代已弃用的 `defatom`。
 
-This project requires paired formal Calcit/procs 0.32.0, Node.js 24 and Yarn 4.18.0.
-使用固定官方 0.32.0 CLI 重新运行原类型、质量与临时词典回归，Linux CI 保留同一套门禁。
+This project requires paired formal Calcit/procs 0.32.1, Node.js 24 and Yarn 4.18.0.
+使用固定官方 0.32.1 CLI 重新运行原类型、质量与临时词典回归，Linux CI 保留同一套门禁。
 
 The canonical sources are `calcit.cirru` and
 `deps.cirru`; do not regenerate or commit retired `compact.cirru` or
