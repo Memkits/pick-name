@@ -8,18 +8,16 @@ Based on https://github.com/dwyl/english-words
 
 ### 使用者影响
 
-源码使用正式 Calcit 与 `@calcit/procs` **0.40.0**。
-请重新安装配对工具链；新的类型标注语法已在上一轮迁移，本轮保留 Snapshot 原字节；筛选算法、输入路径和输出合同不变，也不发布 npm 包。
-没有外部 Calcit 模块。现有四个项目定义已具备完整类型，没有需要用 union 收紧的 Dynamic 边界。4 个项目定义的完整官方视图和 Snapshot 原字节均保持，原 3 项临时词典回归（顺序、CRLF、空词典和无匹配）通过；全定义 6/6、完整 strict 无诊断，当前 8 个质量指标仍为零。npm 新解析版本等待 60 分钟，删除旧单包豁免；已有锁定版本不重新计算等待时间。canonical 门禁仍检查零差异，改为 quiet，避免在失败日志中展开 Snapshot。
+源码使用正式 Calcit 与 `@calcit/procs` **0.41.0**。请重新安装配对工具链，再按原路径运行词典筛选。
 
-以下Result文件读取与Option搜索说明属于前一轮已合并的源码迁移，本轮保持这些行为：
+四个项目定义都具备完整类型。旧质量命令由 `weak-types` 替代，继续要求完整类型覆盖，动态类型、未解析类型槽、nil、unsafe 和弃用调用的预算均为零。
 
 保留 `target/words_alpha.txt` 路径、原筛选条件、输出顺序和缺失文件时的失败行为。
 读取改用 `fs:path` / `.read-text` 的 Result 合同；失败会保留文件错误并退出，
 不会把无法读取的词典静默当作空词典。`defref` 替代已弃用的 `defatom`。
 
-This project requires paired formal Calcit/procs 0.40.0, Node.js 24 and Yarn 4.18.0.
-使用固定官方 0.40.0 CLI 重新运行原类型、质量与临时词典回归，Linux CI 保留同一套门禁。
+This project requires paired formal Calcit/procs 0.41.0, Node.js 24 and Yarn 4.18.0.
+使用固定官方 0.41.0 CLI 重新运行原类型、质量与临时词典回归，Linux CI 保留同一套门禁。
 
 The canonical sources are `calcit.cirru` and
 `deps.cirru`; do not regenerate or commit retired `compact.cirru` or
@@ -48,14 +46,9 @@ It's assumed that you want a name with some certain letters so you filter all av
   println
 ```
 
-String search returns `Option<Number>`; `.unwrap-or -1` preserves the original
-missing-letter behavior. CI keeps strict all-definition/workflow/quality gates and the
-existing fixture tests, without a compiler rewrite preset or extra checker.
-The existing baseline is tightened to zero for all metrics, including the old
-schemaDynamic/typeNone/typeNotFull/unresolved allowances; no budget is relaxed.
-The legacy quality comparison remains until an equivalent supported gate can
-replace it, without adding a project-specific checker. Actions use published version tags rather
-than hashes as requested; tags remain mutable despite read-only permissions.
+String search returns `Option<Number>`. The fallback `.unwrap-or -1` handles
+a missing letter. CI checks canonical formatting, all definitions, the strict
+workflow, zero weak-type findings and the original dictionary fixtures.
 
 ### Workflow
 
