@@ -55,7 +55,9 @@ jobs:
         git diff --quiet --exit-code -- calcit.cirru
         calcit calcit.cirru --check-only --all-defs --format json
         calcit calcit.cirru fix --workflow strict --verify
-        calcit calcit.cirru analyze quality --baseline config/calcit-quality.cirru
+        calcit analyze weak-types --only coverage --coverage-level none,partial --format json | jq -e '.data.definitions | type == "array" and length == 0'
+        calcit analyze weak-types --only schema-dynamic,unresolved-type-slot,code-dynamic,code-nil,unsafe-coerce,data-dynamic --format json | jq -e '.data.definitions | type == "array" and length == 0'
+        calcit analyze weak-types --only deprecated-call --summary-only --format json | jq -e '.data.summary.calls == 0'
 
     - name: Run word-filter smoke test
       run: |
