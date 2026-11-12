@@ -8,7 +8,7 @@ Based on https://github.com/dwyl/english-words
 
 ### 使用者影响
 
-源码使用正式 Calcit 与 `@calcit/procs` **0.41.0**。请重新安装配对工具链，再按原路径运行词典筛选。
+源码使用正式 Calcit 与 `@calcit/procs` **0.41.1**。请重新安装配对工具链，再按原路径运行词典筛选。
 
 四个项目定义都具备完整类型。旧质量命令由 `weak-types` 替代，继续要求完整类型覆盖，动态类型、未解析类型槽、nil、unsafe 和弃用调用的预算均为零。
 
@@ -16,8 +16,8 @@ Based on https://github.com/dwyl/english-words
 读取改用 `fs:path` / `.read-text` 的 Result 合同；失败会保留文件错误并退出，
 不会把无法读取的词典静默当作空词典。`defref` 替代已弃用的 `defatom`。
 
-This project requires paired formal Calcit/procs 0.41.0, Node.js 24 and Yarn 4.18.0.
-使用固定官方 0.41.0 CLI 重新运行原类型、质量与临时词典回归，Linux CI 保留同一套门禁。
+This project requires paired formal Calcit/procs 0.41.1, Node.js 24 and Yarn 4.18.0.
+使用固定官方 0.41.1 CLI 重新运行原类型、质量与临时词典回归，Linux CI 保留同一套门禁。
 
 The canonical sources are `calcit.cirru` and
 `deps.cirru`; do not regenerate or commit retired `compact.cirru` or
