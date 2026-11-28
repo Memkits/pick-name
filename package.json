@@ -10,6 +10,6 @@
   "author": "jiyinyiyong <jiyinyiyong@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@calcit/procs": "0.46.0"
+    "@calcit/procs": "0.47.1"
   }
 }
